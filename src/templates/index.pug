@@ -1,0 +1,142 @@
+extends layouts/default
+block vars
+  - title = "Augmented Spaces 2019!"
+
+block content
+  #users-device-size
+    #xs.visible-xs
+    #sm.visible-sm
+    #md.visible-md
+    #lg.visible-lg
+
+  #canvasbg
+    canvas.bg-animate
+
+  .logo-content
+    h1.logo
+      img.visible-sm.visible-md.visible-lg(src="~images/augmented-desktop@2x.png", alt="")
+      img.visible-xs(src="~images/augmented-mobile@2x.png", alt="")
+
+    span.subline Bridging the physical and digital worlds
+
+    .hostedby
+      span hosted by
+      br
+      img(src="~images/publicis-sapient.svg", alt="")
+
+  #bottom-menu
+    .container
+      a.menuclick(href="javascript:;")
+        +svgicon('expand_less', 'uparrow bounce')
+
+  section.bottom-drawer
+    div.container
+      .content
+        a.close-menu(href="javascript:;")
+          +svgicon('close', 'icon-close')
+        .row
+          .col-md-8
+            h2 Augmented Spaces 2019
+            p Protiotype's popular Augmented Spaces event returns to Publicis Sapient and Singapore Design Week in 2019. Take a tour around the Sapient studio and experience hands-on demos of Realmax, Magic Leap, and the new Moverio smart glasses from EPSON; Plattar, the AR platform for product experiences; Overlay.sg; the Augmented Reality web, and more.
+            p Reimagine the way you experience and interact with Augmented Reality. Listen to short presentations from Protiotype Design Science and Sapient's experts before gathering for a community networking session.
+          .col-md-4
+            ul.event-details
+              li
+                +svgicon('insert_invitation')
+                span.subheader 12 Mar 2019
+                br
+                strong 6:00pm - 9:00pm
+              li
+                +svgicon('room')
+                span.subheader Publicis Sapient
+                br
+                strong
+                  a(href="https://www.google.com/maps/place/16+Collyer+Quay,+16+Collyer+Quay,+Singapore+049318" target="_blank" rel="nofollow")
+                    |16 Collyer quay, #04-02
+                    br
+                    |Singapore 049318
+        .row
+          .col-xs-12
+            hr
+        .row
+          .col-md-6.col-md-push-6
+            div.wrapper
+              h5 Sponsers
+              div.sponsers.big
+                a(href="https://www.publicissapient.com" rel="nofollow" target="_blank", alt="Publicis Sapient")
+                  img(src="../images/sapient.png")
+                a(href="https://www.epson.com.sg" rel="nofollow" target="_blank", alt="Epson")
+                  img(src="../images/epson.png")
+              div.sponsers.small
+                a(href="https://protiotype.com" rel="nofollow" target="_blank", alt="Protiotype")
+                  img(src="../images/protiotype.png")
+                a(href="https://www.plattar.com" rel="nofollow" target="_blank", alt="Plattar")
+                  img(src="../images/plattar.png")
+              h5 Participating Companies
+              div.sponsers.small
+                a(href="http://www.realmax.com" rel="nofollow" target="_blank", alt="Realmax")
+                  img(src="../images/realmax.png")
+                a(href="https://www.a-star.edu.sg/artc" rel="nofollow" target="_blank", alt="Advanced Remanufacturing and Technology Centre (ARTC)")
+                  img(src="../images/astar.png")
+                a(href="https://www.overlay.sg" rel="nofollow" target="_blank", alt="Overlay")
+                  img(src="../images/overlay.png")
+                a(href="http://www.helloholo.info" rel="nofollow" target="_blank", alt="HelloHolo")
+                  img(src="../images/helloholo.png")
+                a(href="https://www.eonreality.com" rel="nofollow" target="_blank", alt="Eon Reality")
+                  img(src="../images/eonreality.png")
+                br
+                a(href="https://www.designsingapore.org/en/sdw" rel="nofollow" target="_blank", alt="Singapore Design Week")
+                  img(src="../images/sdw.png")
+
+          .col-md-6.col-md-pull-6
+            div.wrapper.vdivider
+              h3 AGENDA
+              table.time-table
+                tr
+                  th 18:00
+                  td Door opens
+                tr
+                  th 18:30
+                  td Opening address
+                tr
+                  th 18:50
+                  td Route instruction
+                tr
+                  th 18:55
+                  td Breakout session
+                tr
+                  th 19:00
+                  td Demo by companies
+                tr
+                  th 20:30
+                  td Food &amp; Beverages &amp; Networking
+                tr
+                  th 21:30
+                  td End of event
+        .row
+          .col-xs-12
+            hr
+        .photos
+          .row
+            .col-xs-12
+              h3 PHOTO GALLERY
+          .row
+            .col-xs-12
+              ul.tabs
+                - for(photo in photoprev)
+                  li
+                    - var label = photo.substring(5, photo.length);
+                    a(href="#"+photo)=label
+
+          - for(photo in photoprev)
+            .tab-panel(id=photo)
+              - var photolist = photoprev[photo];
+                .row.centered.galleryphotos
+                  each photo in photolist
+                    .col-md-2.col-sm-4.col-xs-6.gallery
+                      a.photothumb.image-link(href=photo.large)
+                        img.thumb(src=photo.thumb)
+                .row
+                  .col-xs-12.centered
+                    br
+                    a.btn.ghost-btn.showall(href="javascript:;") View all

@@ -1,0 +1,21 @@
+include ../mixins/all
+include ../data/all
+
+block vars
+  - title = "Default Title"
+  - bodyClass = ""
+
+doctype html
+html(class="no-js", lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    title=title
+    meta(name="description" content="")
+    meta(name="keywords", content="")
+    meta(name="robots", content="noindex, nofollow")
+    meta(name="author", content="")
+    link(rel="icon", href="favicon.ico", type="image/x-icon", sizes="16x16")
+
+  body(class=bodyClass)
+    block content

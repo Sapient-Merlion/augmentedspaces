@@ -1,0 +1,6 @@
+mixin svgicon(id, classname)
+  - if (typeof(id) !== 'undefined') id = '/icons/sprite.svg#' + id
+  svg.icon(width='1em', height='1em' class=classname)
+    use(xlink:href=id)
+
+

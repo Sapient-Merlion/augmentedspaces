@@ -1,0 +1,214 @@
+$blurfilter: blur(10px) saturate(20%);
+
+#bottom-menu {
+  position: fixed;
+  top: calc(100% - 80px);
+  width: 100vw;
+}
+.menuclick {
+  display: block;
+  height: 80px;
+  width: 100%;
+  color: #fff;
+  opacity: 1;
+  line-height: 0;
+  background-color: rgba(#03153f, 0.6);
+  transition: opacity 350ms ease-in-out;
+  // backdrop-filter: blur(3px) saturate(20%);
+  padding: 25px calc(50% - 20px) 0 calc(50% - 20px);
+  .uparrow {
+    font-size: 40px;
+    z-index: 2;
+  }
+}
+.expand {
+  .bottom-drawer {
+    transform: unset;
+  }
+  // #canvasbg,
+  // .logo-content {
+  //   filter: blur(5px);
+  // }
+}
+
+.bottom-drawer {
+  position: fixed;
+  -webkit-overflow-scrolling: touch;
+  color: #fff;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transform: translateY(200vh);
+  overflow: hidden;
+  overflow-y: auto;
+  transition: all 0.2s cubic-bezier(0.5, 0.5, 0, 1);
+  .content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-top: solid #00fffc 8px;
+    padding: 50px;
+    background-color: rgba(#03143e, 0.9);
+  }
+  .close-menu {
+    position: absolute;
+    top: 8px;
+    color: #fff;
+    z-index: 2;
+    padding-top: 10px;
+    .icon-close {
+      font-size: 26px;
+    }
+  }
+}
+
+.bounce {
+  animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+.event-details {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    position: relative;
+    padding: 30px 0;
+    padding-left: 45px;
+    border-bottom: 1px solid $border-color;
+    .subheader {
+      font-size: 24px;
+    }
+    .icon {
+      font-size: 32px;
+      position: absolute;
+      left: 0;
+      top: 32px;
+      color: $secondary-bright;
+    }
+    &:last-child {
+      border: none;
+    }
+  }
+}
+
+.time-table {
+  td {
+    text-align: left;
+    padding: 10px 0;
+    font-size: 25px;
+    vertical-align: top;
+  }
+  th {
+    width: 25%;
+    text-align: left;
+    padding: 10px 0;
+    font-size: 20px;
+    vertical-align: top;
+  }
+  margin-bottom: 20px;
+}
+
+.gallery {
+  padding-bottom: 20px;
+  .thumb {
+    width: 100%;
+  }
+}
+
+/* This block of CSS adds opacity transition to background */
+.mfp-with-zoom .mfp-container,
+.mfp-with-zoom.mfp-bg {
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+
+.mfp-with-zoom.mfp-ready .mfp-container {
+  opacity: 1;
+}
+.mfp-with-zoom.mfp-ready.mfp-bg {
+  opacity: 0.8;
+}
+
+.mfp-with-zoom.mfp-removing .mfp-container,
+.mfp-with-zoom.mfp-removing.mfp-bg {
+  opacity: 0;
+}
+
+/* padding-bottom and top for image */
+.mfp-no-margins img.mfp-img {
+  padding: 0;
+}
+
+/* position of shadow behind the image */
+.mfp-no-margins .mfp-figure:after {
+  top: 0;
+  bottom: 0;
+}
+
+/* padding for main container */
+.mfp-no-margins .mfp-container {
+  padding: 0;
+}
+
+.galleryphotos {
+  overflow: hidden;
+  .photothumb {
+    padding: 0;
+    line-height: 0;
+    display: block;
+    position: relative;
+    padding-top: 200px / 200px * 100%;
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
+@media (max-width: $screen-sm-min) {
+  .container {
+    padding: 0;
+  }
+  .bottom-drawer {
+    .content {
+      padding: 15px;
+    }
+    &.expand {
+      .content {
+        margin-top: -80px;
+      }
+      .close-menu {
+        position: absolute;
+        z-index: 3;
+        top: 8px;
+      }
+    }
+  }
+  .time-table {
+    td {
+      font-size: 20px;
+    }
+    th {
+      font-size: 20px;
+    }
+    margin-bottom: 20px;
+  }
+}

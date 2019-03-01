@@ -1,0 +1,32 @@
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+
+// Reset and dependencies
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/print";
+
+// Core CSS
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/grid";
+
+// Utility classes
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/utilities";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
+
+@import "~magnific-popup/dist/magnific-popup.css";
+
+// Utils
+@import "utils/variables";
+@import "utils/mixins";
+@import "utils/functions";
+@import "utils/helpers";
+
+// Base
+@import "base/core";
+@import "base/typography";
+
+// pages
+@import "pages/homepage";
+
+// components
+@import "components/bottom-drawer";
