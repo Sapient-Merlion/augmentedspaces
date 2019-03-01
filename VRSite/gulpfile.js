@@ -274,9 +274,9 @@ gulp.task('scriptReplace', function() {
       .pipe(plumber())
       .pipe(
         htmlreplace({
-          jsLib: '/scripts/libs.min.js?t=' + Date.now(),
-          jsMain: '/scripts/main.min.js?t=' + Date.now(),
-          css: '/styles/style.min.css?t=' + Date.now()
+          jsLib: 'scripts/libs.min.js?t=' + Date.now(),
+          jsMain: 'scripts/main.min.js?t=' + Date.now(),
+          css: 'styles/style.min.css?t=' + Date.now()
         })
       )
       .pipe(gulp.dest(paths.dist.html));
