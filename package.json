@@ -11,7 +11,7 @@
     "debug": "NODE_ENV=debug npm test",
     "develop": "NODE_ENV=develop",
     "start": "cross-env NODE_ENV=development webpack-dev-server --config ./config/webpack.config.js",
-    "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.config.js && cd VRSite && npm run build",
+    "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.config.js && cd VRSite && npm install && npm run build",
     "lint": "yarn eslint .",
     "lint:fix": "yarn lint --fix",
     "fix-code": "prettier-eslint --write 'src/scripts/**/*.{js,jsx}'",
