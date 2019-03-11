@@ -93,7 +93,7 @@ function initialize() {
   markerGroup.add(markerGroupInner);
   scene.add(markerGroup);
 
-  preloadVideo('./content/augmented_spaces.mp4', function(src) {
+  preloadVideo('./content/augmented_spaces_compressed.mp4', function(src) {
     video = document.createElement('video');
     video.crossOrigin = 'anonymous';
     video.autoplay = true;
