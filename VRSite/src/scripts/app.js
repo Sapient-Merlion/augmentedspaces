@@ -2,7 +2,9 @@ var scene, camera, renderer, clock, deltaTime;
 var mixer;
 var arToolkitSource, arToolkitContext;
 var markerGroup, markerGroupInner;
-var video, videoMesh;
+var video,
+  videoMesh,
+  videoState = 'stop';
 var isDebug = false;
 var $preloader = $('.preloader');
 var $preloaderNodes;
@@ -11,6 +13,25 @@ var preloaderTL = new TimelineMax({
   repeat: -1,
   delay: 1.15
 });
+
+function checkDevice(cb) {
+  var ua = new UAParser();
+  if (ua.getResult().os.name === 'iOS') {
+    // alert(ua.getResult().browser.name + '/' + ua.getResult().device.model + '/' + ua.getResult().os.name + '@' + ua.getResult().os.version);
+
+    if (ua.getResult().os.version < 11) {
+      alert('Sorry, this demo only works with iOS version 11 and up');
+      $preloader.html('Sorry, this demo only works with iOS version 11 and up');
+      return;
+    } else if (ua.getResult().browser.name === 'Chrome') {
+      alert('Error, Please use Safari.');
+      $preloader.html('Error, Please use Safari.');
+      return;
+    }
+  }
+
+  cb();
+}
 
 function initPreloader() {
   $preloader.empty();
@@ -94,15 +115,8 @@ function initialize() {
   scene.add(markerGroup);
 
   preloadVideo('./content/augmented_spaces_compressed.mp4', function(src) {
-    video = document.createElement('video');
-    video.crossOrigin = 'anonymous';
-    video.autoplay = true;
-    video.loop = true;
-    video.muted = true;
-    video.src = src;
-    video.style.display = 'none';
-    video.setAttribute('webkit-playsinline', 'webkit-playsinline');
-    video.setAttribute('playsinline', 'playsinline');
+    video = $('#video')[0];
+    $('#video source').attr('src', src);
 
     var map = new THREE.VideoTexture(video);
     map.minFilter = THREE.LinearFilter;
@@ -124,54 +138,62 @@ function initialize() {
       $preloader.addClass('hide');
       preloaderTL.stop();
 
-      if (isDebug) {
-        scene.add(videoMesh);
-        video.play(0);
-
-        var helper = new THREE.GridHelper(1000, 40, 0x303030, 0x303030);
-        scene.add(helper);
-
-        animate();
-      } else {
-        if (arToolkitContext) {
-          var markerControl = new THREEx.ArMarkerControls(arToolkitContext, markerGroup, {
-            type: 'pattern',
-            patternUrl: 'data/pattern-marker.patt'
-          });
-          markerControl.addEventListener('markerFound', function() {
-            if (markerGroup.visible) {
-              try {
-                if (video && video.play) {
-                  video.currentTime = 0;
-                  video.play(0);
-                }
-                // $('.hud').removeClass('hide');
-              } catch (e) {
-                alert('markerFound Error: ' + JSON.stringify(e));
-              }
-            }
-          });
-          markerControl.addEventListener('markerLost', function() {
-            if (!markerGroup.visible) {
-              // $('.hud').addClass('hide');
-              try {
-                if (video && video.stop) {
-                  video.stop();
-                }
-              } catch (e) {
-                alert('markerLost Error: ' + JSON.stringify(e));
-              }
-            }
-          });
-        }
-
-        markerGroupInner.add(videoMesh);
-
-        beginAR();
-        animate();
-      }
+      $('.start-con').removeClass('hide');
+      $('.start-con').on('touchstart', function() {
+        $('.start-con').addClass('hide');
+        onStart();
+        video.stop();
+      });
     }, 1000);
   });
+}
+
+function onStart() {
+  if (isDebug) {
+    scene.add(videoMesh);
+
+    try {
+      video.play();
+    } catch (e) {
+      console.log(e);
+    }
+
+    var helper = new THREE.GridHelper(1000, 40, 0x303030, 0x303030);
+    scene.add(helper);
+
+    animate();
+  } else {
+    if (arToolkitContext) {
+      var markerControl = new THREEx.ArMarkerControls(arToolkitContext, markerGroup, {
+        type: 'pattern',
+        patternUrl: 'data/pattern-marker.patt'
+      });
+      // markerControl.addEventListener('markerFound', function() {
+      //   if (markerGroup.visible) {
+      //     if (video && video.play && videoState === 'stop') {
+      //       videoState = 'playing';
+      //       video.currentTime = 0;
+      //       video.play();
+      //       alert('playing');
+      //     }
+      //   }
+      // });
+      // markerControl.addEventListener('markerLost', function() {
+      //   if (!markerGroup.visible) {
+      //     if (video && video.stop && videoState === 'playing') {
+      //       video.stop();
+      //       videoState = 'stop';
+      //       alert('stop');
+      //     }
+      //   }
+      // });
+    }
+
+    markerGroupInner.add(videoMesh);
+
+    beginAR();
+    animate();
+  }
 }
 
 function setupAR() {
@@ -232,6 +254,32 @@ function animate() {
   if (typeof mixer !== 'undefined') {
     mixer.update(deltaTime);
   }
+
+  if (video) {
+    if (!markerGroup.visible) {
+      if (videoState === 'playing') {
+        // alert('stop');
+        try {
+          video.stop();
+        } catch (e) {
+          // alert('stop error');
+        }
+        videoState = 'stop';
+      }
+    } else {
+      if (video.play && videoState === 'stop') {
+        videoState = 'playing';
+        video.currentTime = 0;
+        try {
+          video.play();
+        } catch (e) {
+          // alert('play error');
+        }
+        // alert('playing');
+      }
+    }
+  }
+
   update();
   render();
 }
@@ -256,8 +304,11 @@ function preloadVideo(url, cb) {
   req.send();
 }
 
-initPreloader();
-$(document).ready(function() {
-  $preloader.removeClass('hide');
-  initialize();
+checkDevice(function() {
+  initPreloader();
+  $(document).ready(function() {
+    $preloader.removeClass('hide');
+
+    initialize();
+  });
 });

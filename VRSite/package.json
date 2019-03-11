@@ -73,6 +73,7 @@
   "dependencies": {
     "howler": "^2.1.1",
     "jquery": "^3.3.1",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "ua-parser-js": "^0.7.19"
   }
 }

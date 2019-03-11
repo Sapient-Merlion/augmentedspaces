@@ -35,6 +35,7 @@ var gulp = require('gulp'),
         'node_modules/howler/dist/howler.js',
         'node_modules/lodash/lodash.js',
         'node_modules/jquery/dist/jquery.slim.js',
+        'node_modules/ua-parser-js/dist/ua-parser.pack.js',
         base.src + 'scripts/vendors/three.js',
         base.src + 'scripts/vendors/ar.js',
         base.src + 'scripts/vendors/**/*.js'

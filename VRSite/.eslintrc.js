@@ -15,6 +15,7 @@ module.exports = {
     _: true,
     $: true,
     Utils: true,
+    UAParser: true,
     TweenMax: true,
     TimelineMax: true
   }
