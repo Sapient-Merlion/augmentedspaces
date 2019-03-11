@@ -4,10 +4,54 @@ var arToolkitSource, arToolkitContext;
 var markerGroup, markerGroupInner;
 var video, videoMesh;
 var isDebug = false;
+var $preloader = $('.preloader');
+var $preloaderNodes;
+var preloaderTL = new TimelineMax({
+  paused: true,
+  repeat: -1,
+  delay: 1.15
+});
 
-var preloaderElm = document.getElementsByClassName('preloader')[0];
+function initPreloader() {
+  $preloader.empty();
+  _.times(8, function() {
+    $('<div class="preloader__node"></div>').appendTo($preloader);
+  });
+  $preloaderNodes = $('.preloader__node');
 
-initialize();
+  var loaderAmount = $preloaderNodes.length,
+    angle = 360 / loaderAmount,
+    //Spin velocity, smaller the value, faster it rotates
+    spinSpeed = 0.05;
+
+  TweenMax.set($preloader, {
+    perspective: 300
+  });
+
+  $.each($preloaderNodes, function(i) {
+    var alpha = 0.1 * i + 0.3;
+
+    TweenMax.set($(this), {
+      left: 150,
+      top: 100
+    });
+
+    TweenMax.to($(this), 1, {
+      rotationY: (i + 1) * angle,
+      transformOrigin: '50% 50% -100px',
+      autoAlpha: alpha
+    });
+
+    preloaderTL.set($preloaderNodes, {
+      rotationY: '+=' + angle,
+      transformOrigin: '50% 50% -100px',
+      // eslint-disable-next-line
+      ease: Linear.easeNone,
+      delay: spinSpeed
+    });
+  });
+  preloaderTL.play();
+}
 
 function initialize() {
   scene = new THREE.Scene();
@@ -63,7 +107,11 @@ function initialize() {
     var map = new THREE.VideoTexture(video);
     map.minFilter = THREE.LinearFilter;
     map.magFilter = THREE.LinearFilter;
-    var material = new THREE.MeshLambertMaterial({ color: 0xffffff, map: map, side: THREE.DoubleSide });
+    var material = new THREE.MeshLambertMaterial({
+      color: 0xffffff,
+      map: map,
+      side: THREE.DoubleSide
+    });
     material.format = THREE.RGBFormat;
     var geometry = new THREE.PlaneBufferGeometry(1, 1);
     videoMesh = new THREE.Mesh(geometry, material);
@@ -73,7 +121,8 @@ function initialize() {
     }
 
     setTimeout(function() {
-      preloaderElm.style.display = 'none';
+      $preloader.addClass('hide');
+      preloaderTL.stop();
 
       if (isDebug) {
         scene.add(videoMesh);
@@ -81,7 +130,7 @@ function initialize() {
 
         var helper = new THREE.GridHelper(1000, 40, 0x303030, 0x303030);
         scene.add(helper);
-  
+
         animate();
       } else {
         if (arToolkitContext) {
@@ -96,7 +145,7 @@ function initialize() {
                   video.currentTime = 0;
                   video.play(0);
                 }
-                $('.hud').removeClass('hide');
+                // $('.hud').removeClass('hide');
               } catch (e) {
                 alert('markerFound Error: ' + JSON.stringify(e));
               }
@@ -104,7 +153,7 @@ function initialize() {
           });
           markerControl.addEventListener('markerLost', function() {
             if (!markerGroup.visible) {
-              $('.hud').addClass('hide');
+              // $('.hud').addClass('hide');
               try {
                 if (video && video.stop) {
                   video.stop();
@@ -115,9 +164,9 @@ function initialize() {
             }
           });
         }
-  
+
         markerGroupInner.add(videoMesh);
-  
+
         beginAR();
         animate();
       }
@@ -192,16 +241,6 @@ function preloadVideo(url, cb) {
   req.open('GET', url, true);
   req.responseType = 'blob';
 
-  req.onprogress = function(xhr) {
-    var perc = ((xhr.total - xhr.loaded) / xhr.total) * 100;
-    preloaderElm.style.top = perc + '%';
-    preloaderElm.textContent = 'Loading assets...';
-
-    if (!perc) {
-      preloaderElm.innerHTML = 'Loading... Done!';
-    }
-  };
-
   req.onload = function() {
     if (this.status === 200) {
       if (cb) {
@@ -216,3 +255,9 @@ function preloadVideo(url, cb) {
 
   req.send();
 }
+
+initPreloader();
+$(document).ready(function() {
+  $preloader.removeClass('hide');
+  initialize();
+});

@@ -1,10 +1,10 @@
 {
-  "name": "webpack-boilerplate-2018",
+  "name": "augmented-spaces",
   "sideEffects": [
     "*.scss"
   ],
   "version": "1.0.0",
-  "description": "Webpack 4 JS/SCSS Boilerplate",
+  "description": "Augmented Spaces",
   "private": true,
   "scripts": {
     "test": "jest",

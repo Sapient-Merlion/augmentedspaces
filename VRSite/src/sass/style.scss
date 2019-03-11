@@ -1,25 +1,32 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700");
 html,
 body {
-  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-family: "Montserrat", arial, "Helvetica Neue", helvetica, sans-serif;
   margin: 0;
   width: 100vw;
   min-height: 100vh;
   overflow: hidden;
   position: fixed;
+  background-color: black;
 }
 
 .preloader {
-  background-color: #0f0;
-  position: fixed;
-  top: 100%;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 100%;
+  max-width: 300px;
+  color: white;
   text-align: center;
-  display: flex;
-  color: #fff;
+}
+
+.preloader__node {
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  position: absolute;
+  border-radius: 50%;
 }
 
 .hide {
@@ -45,7 +52,6 @@ body {
 }
 
 canvas {
-
   /* stylelint-disable-next-line */
   position: relative !important;
 }
