@@ -31,7 +31,8 @@ const html = {
           require: require,
           templatelist: pugTemplates,
           iconlist: svgIconList
-        }
+        },
+        attrs: ['img:src', 'link:href']
       }
     }
   ]
