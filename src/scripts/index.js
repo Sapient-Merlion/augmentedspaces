@@ -1,27 +1,93 @@
 'use strict';
 
 import 'babel-polyfill';
-import * as jQuery from 'jquery';
+import 'jquery';
+import 'magnific-popup';
 import anime from 'animejs';
-import * as magnificpopup from 'magnific-popup';
 import CanvasAnimate from './components/canvasAnimate';
 
-import '!!file-loader?name=images/[name].[ext]!images/gallery/photo1.jpg';
-import '!!file-loader?name=images/[name].[ext]!images/gallery/photo2.jpg';
-import '!!file-loader?name=images/[name].[ext]!images/gallery/photo3.jpg';
-import '!!file-loader?name=images/[name].[ext]!images/gallery/photo4.jpg';
-import '!!file-loader?name=images/[name].[ext]!images/gallery/photo5.jpg';
-import '!!file-loader?name=images/[name].[ext]!images/gallery/photo6.jpg';
-import '!!file-loader?name=images/[name].[ext]!images/gallery/photo7.jpg';
-import '!!file-loader?name=images/[name].[ext]!images/gallery/photo8.jpg';
-import '!!file-loader?name=images/[name].[ext]!images/gallery/photo9.jpg';
-import '!!file-loader?name=images/[name].[ext]!images/gallery/photo10.jpg';
-import '!!file-loader?name=images/[name].[ext]!images/gallery/photo11.jpg';
-import '!!file-loader?name=images/[name].[ext]!images/gallery/photo12.jpg';
-import '!!file-loader?name=images/[name].[ext]!images/gallery/photo13.jpg';
-import '!!file-loader?name=images/[name].[ext]!images/gallery/photo14.jpg';
-import '!!file-loader?name=images/[name].[ext]!images/gallery/photo15.jpg';
-import '!!file-loader?name=images/[name].[ext]!images/gallery/photo16.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo1.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo2.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo3.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo4.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo5.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo6.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo7.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo8.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo9.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo10.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo11.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo12.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo13.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo14.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo15.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo16.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo17.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo18.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo19.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo20.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo21.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo22.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo23.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo24.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo25.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo26.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo27.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo28.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo29.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo30.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo31.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo32.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo33.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo34.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo35.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo36.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo37.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo38.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo39.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo40.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo41.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo42.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo43.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo44.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo45.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo46.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo47.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo48.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo49.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo50.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo51.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo52.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo53.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo54.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo55.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo56.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo57.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo58.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo59.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo60.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo61.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo62.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo63.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo64.jpg';
+import '!!file-loader?name=images/2019/[name].[ext]!images/2019/photo65.jpg';
+
+import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo1.jpg';
+import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo2.jpg';
+import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo3.jpg';
+import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo4.jpg';
+import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo5.jpg';
+import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo6.jpg';
+import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo7.jpg';
+import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo8.jpg';
+import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo9.jpg';
+import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo10.jpg';
+import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo11.jpg';
+import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo12.jpg';
+import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo13.jpg';
+import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo14.jpg';
+import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo15.jpg';
+import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo16.jpg';
 
 import '../styles/style.scss';
 
@@ -188,6 +254,19 @@ $(() => {
       duration: 300 // don't foget to change the duration also in CSS
     }
   });
+
+  if (window.location.hash.slice(1) === 'gallery') {
+    $('.menuclick').trigger('click');
+    setTimeout(function() {
+      $('.bottom-drawer').animate(
+        {
+          scrollTop: $('.anchor-gallery').offset().top
+        },
+        500
+      );
+    }, 800);
+  }
+
   initTabs();
   initViewall();
   window.dispatchEvent(new Event('resize'));
