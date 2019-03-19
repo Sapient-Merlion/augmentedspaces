@@ -4,6 +4,7 @@ import 'babel-polyfill';
 import 'jquery';
 import 'magnific-popup';
 import './modules/image-loader';
+import LazyLoad from 'lazyload';
 import anime from 'animejs';
 import CanvasAnimate from './components/canvasAnimate';
 import '../styles/style.scss';
@@ -180,6 +181,8 @@ $(() => {
       );
     }, 800);
   }
+
+  var lazyLoadInstance = new LazyLoad();
 
   initTabs();
   initViewall();

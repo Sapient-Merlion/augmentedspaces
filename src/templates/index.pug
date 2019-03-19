@@ -135,7 +135,7 @@ block content
                   each photo in photolist
                     .col-md-2.col-sm-4.col-xs-6.gallery
                       a.photothumb.image-link(href=photo.large)
-                        img.thumb(src=photo.thumb)
+                        img.thumb.lazyload(data-src=photo.thumb)
                 .row
                   .col-xs-12.centered
                     br

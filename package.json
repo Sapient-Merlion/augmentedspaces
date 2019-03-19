@@ -83,6 +83,7 @@
     "babel-polyfill": "^6.26.0",
     "bootstrap-sass": "^3.4.1",
     "jquery": "^3.3.1",
+    "lazyload": "^2.0.0-beta.2",
     "lodash": "^4.17.10",
     "magnific-popup": "^1.1.0",
     "modularscale-sass": "^3.0.8",
