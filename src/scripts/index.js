@@ -89,14 +89,17 @@ import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo14.jpg';
 import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo15.jpg';
 import '!!file-loader?name=images/2018/[name].[ext]!images/2018/photo16.jpg';
 
+function importAll(r) {
+  return r.keys().map(r);
+}
+
+const images = importAll(require.context('../images/gallery/', false, /\.(png|jpe?g|svg)$/));
+const svgs = importAll(require.context('../icons/', false, /.*\.svg$/));
 import '../styles/style.scss';
 
 //bind plugin definition to jQuery
 window.jQuery = $;
 window.$ = $;
-
-const files = require.context('../icons/', false, /.*\.svg$/);
-files.keys().forEach(files);
 
 CanvasAnimate();
 
