@@ -1,5 +1,4 @@
 const path = require('path');
-
 const config = require('./site.config');
 const loaders = require('./webpack.loaders');
 const plugins = require('./webpack.plugins');
@@ -21,7 +20,7 @@ module.exports = {
     filename: '[name].[hash].js'
   },
   mode: ['production', 'development'].includes(config.env) ? config.env : 'development',
-  devtool: 'cheap-eval-source-map',
+  devtool: config.env === 'development' ? 'cheap-eval-source-map' : '',
   devServer: {
     contentBase: path.resolve(__dirname, '../'),
     inline: true,

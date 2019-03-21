@@ -12,6 +12,7 @@ import '../styles/style.scss';
 //bind plugin definition to jQuery
 window.jQuery = $;
 window.$ = $;
+window.lazyLoadInstance;
 
 CanvasAnimate();
 
@@ -140,12 +141,20 @@ function getBootstrapDeviceSize() {
 $(() => {
   window.onresize = () => {
     initViewall();
+
+    if (window.lazyLoadInstance) {
+      window.lazyLoadInstance.loadImages();
+    }
   };
 
   $('.menuclick').on('click', function() {
     $('body').addClass('expand');
     $('#bottom-menu').hide();
     initViewall();
+
+    if (window.lazyLoadInstance) {
+      window.lazyLoadInstance.loadImages();
+    }
   });
 
   $('.close-menu').on('click', function() {
@@ -182,7 +191,7 @@ $(() => {
     }, 800);
   }
 
-  var lazyLoadInstance = new LazyLoad();
+  window.lazyLoadInstance = new LazyLoad();
 
   initTabs();
   initViewall();
