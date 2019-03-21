@@ -77,6 +77,8 @@
     "webpackbar": "^3.1.5"
   },
   "dependencies": {
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-polyfill": "^6.26.0",
     "animejs": "^3.0.1",
     "bootstrap-sass": "^3.4.1",
     "jquery": "^3.3.1",
