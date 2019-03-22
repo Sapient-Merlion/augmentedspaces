@@ -12,7 +12,6 @@ import '../styles/style.scss';
 //bind plugin definition to jQuery
 window.jQuery = $;
 window.$ = $;
-window.lazyLoadInstance;
 
 CanvasAnimate();
 
@@ -67,67 +66,26 @@ function initViewall() {
 
   $('.galleryphotos').removeAttr('style');
   $('.galleryphotos').each(function() {
-    const galleryContainer = $(this);
-    galleryContainer
-      .next()
-      .find('.showall')
-      .show();
+    const $galleryContainer = $(this);
+    const $btnShowAll = $galleryContainer.next().find('.showall');
+    $btnShowAll.show();
 
-    // check if total photo lesser that the initial show value
-    if (initialShow >= galleryContainer.find('.photothumb').length) {
-      galleryContainer
-        .next()
-        .find('.showall')
-        .hide();
-    }
-
-    galleryContainer.find('.photothumb').each(function(i) {
-      if (i > initialShow - 1) {
-        $(this)
-          .parent()
-          .removeAttr('style');
-      }
+    const shortenheight = $galleryContainer.find('.gallery').outerHeight() * 2;
+    $galleryContainer.attr('data-origheight', $galleryContainer.outerHeight());
+    $galleryContainer.css({
+      height: shortenheight,
     });
 
-    galleryContainer.attr('data-origheight', galleryContainer.outerHeight());
-
-    galleryContainer.find('.photothumb').each(function(i) {
-      if (i > initialShow - 1) {
-        $(this)
-          .parent()
-          .css({
-            display: 'none'
-          });
-      }
-    });
-
-    const shortenheight = $(this).outerHeight();
-    galleryContainer.css({
-      height: shortenheight
-    });
-
-    galleryContainer.find('.photothumb').each(function(i) {
-      if (i > initialShow - 1) {
-        $(this)
-          .parent()
-          .removeAttr('style');
-      }
-    });
-
-    galleryContainer
-      .next()
-      .find('.showall')
-      .off()
-      .on('click', function() {
-        const totalHeight = galleryContainer.data('origheight');
-        anime({
-          targets: '.galleryphotos',
-          height: totalHeight,
-          easing: 'easeOutCubic',
-          duration: 350
-        });
-        $(this).hide();
+    $btnShowAll.off().on('click', function() {
+      const totalHeight = $galleryContainer.data('origheight');
+      anime({
+        targets: '.galleryphotos',
+        height: totalHeight,
+        easing: 'easeOutCubic',
+        duration: 350
       });
+      $(this).hide();
+    });
   });
 }
 
@@ -141,20 +99,12 @@ function getBootstrapDeviceSize() {
 $(() => {
   window.onresize = () => {
     initViewall();
-
-    if (window.lazyLoadInstance) {
-      window.lazyLoadInstance.loadImages();
-    }
   };
 
   $('.menuclick').on('click', function() {
     $('body').addClass('expand');
     $('#bottom-menu').hide();
     initViewall();
-
-    if (window.lazyLoadInstance) {
-      window.lazyLoadInstance.loadImages();
-    }
   });
 
   $('.close-menu').on('click', function() {
@@ -191,9 +141,8 @@ $(() => {
     }, 800);
   }
 
-  window.lazyLoadInstance = new LazyLoad();
-
   initTabs();
-  initViewall();
   window.dispatchEvent(new Event('resize'));
+
+  new LazyLoad();
 });
