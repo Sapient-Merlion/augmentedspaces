@@ -13,6 +13,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const imageminMozjpeg = require('imagemin-mozjpeg');
 
 const config = require('./site.config');
 const pugTemplates = fs
@@ -133,6 +135,10 @@ const google = new GoogleAnalyticsPlugin({
   id: config.googleAnalyticsUA
 });
 
+const images = new ImageminPlugin({
+  plugins: [imageminMozjpeg({ quality: 85 })]
+});
+
 module.exports = [
   clean,
   jquery,
@@ -143,6 +149,7 @@ module.exports = [
   fs.existsSync(config.favicon) && favicons,
   config.env === 'production' && optimizeCss,
   config.env === 'production' && robots,
+  config.env === 'production' && images,
   config.googleAnalyticsUA && google,
   webpackBar,
   config.env === 'development' && hmr
